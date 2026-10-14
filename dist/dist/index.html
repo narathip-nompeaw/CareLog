@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073a75">
+  <title>FAIR LOOP Prototype</title>
+  <meta name="description" content="ต้นแบบระบบ FAIR LOOP สำหรับพนักงาน ทีม FAIR LOOP และ HR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <main id="login-view" class="login-shell">
+    <section class="phone-login" aria-labelledby="login-title">
+      <div class="brand-wrap">
+        <img src="assets/fair-loop-logo.png" alt="FAIR LOOP — Fair Work, Better Tomorrow" class="brand-logo">
+      </div>
+      <div class="city-glow" aria-hidden="true"></div>
+      <div class="login-card">
+        <span class="eyebrow">พื้นที่ปลอดภัยสำหรับพนักงาน</span>
+        <h1 id="login-title">เข้าสู่ระบบ FAIR LOOP</h1>
+        <p>กรอก PIN 6 หลักเพื่อเข้าสู่พื้นที่ขององค์กร</p>
+        <label class="pin-entry" for="pin-input" aria-label="กรอก PIN 6 หลัก">
+          <span class="pin-dots" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </span>
+          <input id="pin-input" class="pin-input" inputmode="numeric" maxlength="6" pattern="[0-9]*" autocomplete="one-time-code" aria-label="PIN 6 หลัก">
+        </label>
+        <button id="login-btn" class="btn btn-primary btn-block">เข้าสู่พื้นที่ปลอดภัย</button>
+        <button id="demo-pin-btn" class="text-btn">ใช้ PIN ตัวอย่าง 256826</button>
+        <p class="privacy-note">ต้นแบบนี้ใช้ข้อมูลจำลองและไม่ส่งข้อมูลไปยังองค์กรจริง</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="app-shell" class="app-shell hidden">
+    <header class="topbar">
+      <button class="brand-button" data-route="home" aria-label="กลับหน้าหลัก">
+        <img src="assets/fair-loop-logo.png" alt="FAIR LOOP" class="top-logo">
+      </button>
+      <div class="role-switcher" aria-label="เปลี่ยนมุมมองต้นแบบ">
+        <button class="role-btn active" data-role="employee">พนักงาน</button>
+        <button class="role-btn" data-role="review">FAIR LOOP</button>
+        <button class="role-btn" data-role="hr">HR</button>
+      </div>
+      <button id="logout-btn" class="icon-btn" aria-label="ออกจากระบบ">ออก</button>
+    </header>
+
+    <div class="prototype-banner">
+      <strong>Interactive Prototype</strong>
+      <span>ทดลองเส้นทางพนักงาน → FAIR LOOP → HR → Case Tracker</span>
+    </div>
+
+    <section id="employee-app" class="workspace employee-workspace">
+      <nav class="mobile-nav" aria-label="เมนูพนักงาน">
+        <button data-route="home" class="nav-item active">หน้าหลัก</button>
+        <button data-route="ask" class="nav-item">Ask FAIR AI</button>
+        <button data-route="safe" class="nav-item">Safe Voice</button>
+        <button data-route="tracker" class="nav-item">Case Tracker</button>
+      </nav>
+
+      <div id="route-home" class="route-view">
+        <div class="welcome-block">
+          <span class="eyebrow">FAIR LOOP EMPLOYEE APP</span>
+          <h2>วันนี้ให้เราช่วยอะไร?</h2>
+          <p>เลือกฟังก์ชันที่เหมาะกับสิ่งที่คุณต้องการ โดยข้อมูลคำปรึกษาจะไม่ถูกส่งให้บริษัทจนกว่าคุณจะกดยืนยัน</p>
+        </div>
+        <div class="feature-grid">
+          <button class="feature-card ask" data-route="ask">
+            <span class="feature-icon">AI</span>
+            <span><strong>Ask FAIR AI</strong><small>ถามเรื่องสิทธิ กฎ และสวัสดิการอย่างเป็นส่วนตัว</small></span>
+            <span class="chevron">›</span>
+          </button>
+          <button class="feature-card safe" data-route="safe">
+            <span class="feature-icon">SV</span>
+            <span><strong>Safe Voice</strong><small>ส่งเรื่องอย่างปลอดภัย พร้อมเลือกปกปิดตัวตน</small></span>
+            <span class="chevron">›</span>
+          </button>
+          <button class="feature-card tracker" data-route="tracker">
+            <span class="feature-icon">CT</span>
+            <span><strong>Case Tracker</strong><small>สแกน QR หรือกรอกรหัสเพื่อติดตามความคืบหน้า</small></span>
+            <span class="chevron">›</span>
+          </button>
+        </div>
+        <div class="trust-strip">
+          <strong>ความเป็นส่วนตัวมาก่อน</strong>
+          <span>ถามได้โดยยังไม่สร้างเคส · ส่งเรื่องเมื่อคุณพร้อม · ติดตามผลได้ทุกขั้นตอน</span>
+        </div>
+      </div>
+
+      <div id="route-ask" class="route-view hidden">
+        <div class="screen-heading">
+          <button class="back-btn" data-route="home">‹</button>
+          <div><span class="eyebrow">PRIVATE GUIDANCE</span><h2>Ask FAIR AI</h2></div>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-security">บทสนทนานี้ยังไม่ถูกส่งให้ HR หรือสร้างเป็นเคส</div>
+          <div id="chat-messages" class="chat-messages">
+            <div class="message ai-message"><span class="bot-avatar">AI</span><div>สวัสดีค่ะ ฉันช่วยอธิบายสิทธิ สวัสดิการ และขั้นตอนของบริษัทได้ คุณต้องการปรึกษาเรื่องอะไร?</div></div>
+          </div>
+          <div class="quick-prompts">
+            <button data-question="ถูกประเมินผลงานอย่างไม่เป็นธรรม ควรทำอย่างไร?">การประเมินไม่เป็นธรรม</button>
+            <button data-question="ลาป่วยต้องใช้ใบรับรองแพทย์หรือไม่?">สิทธิวันลาป่วย</button>
+            <button data-question="พบการแก้เอกสารค่าใช้จ่ายย้อนหลัง ควรทำอย่างไร?">เอกสารผิดปกติ</button>
+          </div>
+          <form id="chat-form" class="chat-input-row">
+            <input id="chat-input" aria-label="พิมพ์คำถาม" placeholder="พิมพ์คำถามของคุณ...">
+            <button class="btn btn-primary" type="submit">ส่ง</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="route-safe" class="route-view hidden">
+        <div class="screen-heading">
+          <button class="back-btn" data-route="home">‹</button>
+          <div><span class="eyebrow">SECURE REPORTING</span><h2>Safe Voice</h2></div>
+        </div>
+        <div class="form-intro">
+          <strong>ส่งข้อมูลอย่างปลอดภัย</strong>
+          <span>ข้อมูลจะผ่าน AI คัดกรองและทีม FAIR LOOP ตรวจสอบก่อนส่งให้บริษัท</span>
+        </div>
+        <form id="safe-form" class="safe-form">
+          <label>ประเภทเรื่อง
+            <select id="case-type" required>
+              <option value="">เลือกประเภทเรื่อง</option>
+              <option>สิทธิและสวัสดิการ</option>
+              <option>ความไม่เป็นธรรม</option>
+              <option>การทุจริตหรือผิดระเบียบ</option>
+              <option>ข้อเสนอแนะ</option>
+            </select>
+          </label>
+          <label>รายละเอียดเหตุการณ์
+            <textarea id="case-detail" rows="5" required placeholder="เล่าสิ่งที่เกิดขึ้น โดยไม่จำเป็นต้องระบุชื่อหากยังไม่พร้อม"></textarea>
+          </label>
+          <div class="two-col">
+            <label>วันที่เกิดเหตุ<input id="case-date" type="date"></label>
+            <label>สถานที่หรือแผนก<input id="case-location" placeholder="เช่น ฝ่ายขาย"></label>
+          </div>
+          <label>หลักฐานประกอบ (ตัวอย่าง)
+            <div class="file-drop">＋ เพิ่มรูป เอกสาร หรือวิดีโอ</div>
+          </label>
+          <fieldset class="identity-choice">
+            <legend>การเปิดเผยตัวตน</legend>
+            <label><input type="radio" name="identity" value="anonymous" checked> ไม่เปิดเผยตัวตนต่อบริษัท</label>
+            <label><input type="radio" name="identity" value="named"> เปิดเผยตัวตนเพื่อให้ติดต่อโดยตรง</label>
+          </fieldset>
+          <label class="consent"><input id="case-consent" type="checkbox" required> ฉันตรวจสอบข้อมูลแล้วและยืนยันส่งเรื่องเข้าสู่กระบวนการ</label>
+          <button class="btn btn-accent btn-block" type="submit">ตรวจสอบและส่งเรื่อง</button>
+        </form>
+      </div>
+
+      <div id="route-confirmation" class="route-view hidden">
+        <div class="success-panel">
+          <div class="success-mark">✓</div>
+          <span class="eyebrow">SUBMITTED SAFELY</span>
+          <h2>ส่งเรื่องเรียบร้อย</h2>
+          <p>เรื่องจะผ่าน AI และทีม FAIR LOOP ตรวจสอบก่อนส่งต่อให้บริษัท</p>
+          <div class="case-code-block">
+            <span>Case ID</span>
+            <strong id="confirmation-code">FL-9482-XQ7K</strong>
+            <button id="copy-code" class="text-btn">คัดลอกรหัส</button>
+          </div>
+          <canvas id="case-qr" width="180" height="180" aria-label="QR Code สำหรับติดตามเคส"></canvas>
+          <small>บันทึก QR นี้ไว้สำหรับเปิด Case Tracker โดยไม่ต้องใช้อีเมล</small>
+          <button class="btn btn-primary btn-block" data-route="tracker">ติดตามสถานะเคส</button>
+        </div>
+      </div>
+
+      <div id="route-tracker" class="route-view hidden">
+        <div class="screen-heading">
+          <button class="back-btn" data-route="home">‹</button>
+          <div><span class="eyebrow">CASE STATUS</span><h2>Case Tracker</h2></div>
+        </div>
+        <div class="tracker-entry">
+          <label for="tracker-code">กรอก Case ID หรือ Token</label>
+          <div class="tracker-input-row">
+            <input id="tracker-code" value="FL-9482-XQ7K" placeholder="เช่น FL-9482-XQ7K">
+            <button id="open-case-btn" class="btn btn-primary">เปิดเคส</button>
+          </div>
+          <button id="scan-demo-btn" class="scan-btn">▦ สแกน QR Code</button>
+        </div>
+        <div id="tracker-detail" class="case-detail-card hidden"></div>
+      </div>
+    </section>
+
+    <section id="review-app" class="workspace desktop-workspace hidden">
+      <aside class="side-nav">
+        <img src="assets/fair-loop-logo.png" alt="FAIR LOOP" class="side-logo">
+        <strong>Review Console</strong>
+        <button class="active">เคสที่รอตรวจ <span id="review-count">1</span></button>
+        <button>ส่งต่อแล้ว</button>
+        <button>ใกล้เกิน SLA</button>
+        <button>Audit Trail</button>
+      </aside>
+      <div class="desktop-main">
+        <div class="desktop-title"><div><span class="eyebrow">FAIR LOOP OPERATIONS</span><h2>ตรวจสอบเคสก่อนส่งบริษัท</h2></div><span class="staff-chip">เจ้าหน้าที่ FAIR LOOP</span></div>
+        <div class="work-columns">
+          <div class="case-list" id="review-case-list"></div>
+          <div class="review-panel" id="review-panel"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hr-app" class="workspace desktop-workspace hidden">
+      <aside class="side-nav hr-nav">
+        <img src="assets/fair-loop-logo.png" alt="FAIR LOOP" class="side-logo">
+        <strong>ศูนย์ดำเนินการสำหรับ HR</strong>
+        <button class="active">เคสที่ได้รับ <span id="hr-count">0</span></button>
+        <button>กำลังดำเนินการ</button>
+        <button>ใกล้เกิน SLA</button>
+        <button>ปิดเคสแล้ว</button>
+        <button>รายงาน</button>
+      </aside>
+      <div class="desktop-main">
+        <div class="desktop-title"><div><span class="eyebrow">COMPANY CASE MANAGEMENT</span><h2>HR & Committee Dashboard</h2></div><span class="staff-chip">HR บริษัทตัวอย่าง</span></div>
+        <div class="work-columns">
+          <div class="case-list" id="hr-case-list"></div>
+          <div class="review-panel" id="hr-panel"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
